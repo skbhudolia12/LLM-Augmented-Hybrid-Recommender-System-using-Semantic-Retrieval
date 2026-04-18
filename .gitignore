@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.env
+
+# Data and Models
+data/
+checkpoints/
+results/
+*.db
+*.sqlite3
+
+# OS artifacts
+.DS_Store
+Thumbs.db
