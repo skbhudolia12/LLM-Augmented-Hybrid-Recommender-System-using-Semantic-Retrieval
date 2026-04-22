@@ -20,6 +20,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import AdamW
 from transformers import BertTokenizer, get_linear_schedule_with_warmup
 import pandas as pd
+from tqdm import tqdm
 from sqlalchemy import create_engine, text
 
 from src.user_encoder.i2p_bert import I2PBERT, I2PBERTLoss
@@ -128,7 +129,7 @@ def train_i2p_bert(
     logger.info("Training I2P-BERT on %s", device)
 
     # Tokenizer
-    tokenizer = BertTokenizer.from_pretrained(config["bert_model"])
+    tokenizer = BertTokenizer.from_pretrained(config["model_name"])
 
     # Split labels into train/val (90/10 of training users)
     labels_shuffled = labels_df.sample(frac=1, random_state=42).reset_index(drop=True)
@@ -141,15 +142,15 @@ def train_i2p_bert(
     val_dataset = UserProfileDataset(interaction_texts, val_labels, tokenizer)
 
     train_loader = DataLoader(
-        train_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=0
+        train_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=8
     )
     val_loader = DataLoader(
-        val_dataset, batch_size=config["batch_size"], shuffle=False, num_workers=0
+        val_dataset, batch_size=config["batch_size"], shuffle=False, num_workers=8
     )
 
     # Model
     model = I2PBERT(
-        bert_model_name=config["bert_model"],
+        bert_model_name=config["model_name"],
         num_genres=config["num_genres"],
         num_eras=config["num_eras"],
         num_activity_levels=config["num_activity_levels"],
@@ -183,7 +184,8 @@ def train_i2p_bert(
         model.train()
         train_losses = []
 
-        for batch in train_loader:
+        train_pbar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{config['epochs']} [Train]")
+        for batch in train_pbar:
             input_ids = batch["input_ids"].to(device)
             attention_mask = batch["attention_mask"].to(device)
             targets = {
@@ -203,6 +205,7 @@ def train_i2p_bert(
             scheduler.step()
 
             train_losses.append(losses["total_loss"].item())
+            train_pbar.set_postfix(loss=np.mean(train_losses[-50:]))
 
         avg_train_loss = np.mean(train_losses)
 
@@ -210,8 +213,9 @@ def train_i2p_bert(
         model.eval()
         val_losses = []
 
+        val_pbar = tqdm(val_loader, desc=f"Epoch {epoch+1}/{config['epochs']} [Val]", leave=False)
         with torch.no_grad():
-            for batch in val_loader:
+            for batch in val_pbar:
                 input_ids = batch["input_ids"].to(device)
                 attention_mask = batch["attention_mask"].to(device)
                 targets = {

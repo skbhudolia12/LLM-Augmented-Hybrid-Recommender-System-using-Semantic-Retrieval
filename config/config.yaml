@@ -1,92 +1,66 @@
 # ============================================================
-# I2P-BERT Hybrid Recommendation Pipeline — Configuration
+# I2P-BERT Hybrid Recommendation Pipeline — Implicit Feedback
 # ============================================================
 
 project:
-  name: "I2P-BERT"
+  name: "I2P-BERT-Implicit"
   seed: 42
-  device: "cpu"  # "cuda" or "cpu"
+  device: "cuda"
 
-# --- Data ---
 data:
   dataset: "ml-1m"
   raw_dir: "data/raw/ml-1m"
   processed_dir: "data/processed"
-  # Timestamp-based split ratios
-  train_ratio: 0.8
-  val_ratio: 0.1
-  test_ratio: 0.1
-  # TMDB API for plot summaries
-  tmdb_api_key: "c1a12a601d4d4d1ddbb92005963a06ff"  # SET THIS — register at https://www.themoviedb.org/settings/api
+  test_negatives: 99    # Number of negatives per user for testing
+  # Optional: TMDB
+  tmdb_api_key: ""
   tmdb_cache_path: "data/raw/tmdb_cache.json"
 
-# --- Item Encoder (sBERT) ---
 item_encoder:
   model_name: "all-MiniLM-L6-v2"
   embedding_dim: 384
   vector_db_path: "data/vector_db"
-  batch_size: 64
+  batch_size: 512
 
-# --- User Encoder (I2P-BERT) ---
 user_encoder:
-  bert_model: "bert-base-uncased"
+  model_name: "bert-base-uncased"
   hidden_dim: 768
-  num_genres: 18        # ML-1M has 18 genres
-  num_eras: 4           # classic (<1980), 80s, 90s, 2000s
-  num_activity_levels: 3  # low, medium, high
-  # Training
-  epochs: 15
-  batch_size: 32
+  num_genres: 18
+  num_eras: 4
+  num_activity_levels: 3
+  epochs: 20
+  batch_size: 128
   learning_rate: 2.0e-5
   weight_decay: 0.01
   warmup_ratio: 0.1
   dropout: 0.1
-  # Multi-task loss weights
   loss_weights:
     genre_affinity: 1.0
     activity_level: 0.5
     preference_era: 0.5
-    rating_tendency: 0.3
-  # Profile storage
+    rating_tendency: 0.0 # Unused in implicit
   db_path: "data/user_profiles.db"
 
-# --- Feature Fusion ---
-feature_fusion:
-  user_cls_pca_dim: 128   # PCA compress 768 → 128
-  knn_k: 10               # k neighbors for collaborative signals
-  similarity_metric: "cosine"
+mlp:
+  gmf_dim: 32
+  mlp_dim: 32
+  epochs: 40
+  batch_size: 256
+  train_negatives: 8
+  learning_rate: 5.0e-4
+  weight_decay: 0.01
 
-# --- XGBoost Predictor ---
-predictor:
-  # Optuna hyperparameter search
-  optuna_trials: 100
-  # Fixed params
-  objective: "reg:squarederror"
-  random_state: 42
-  tree_method: "hist"
-  # Search space (Optuna will explore these ranges)
-  search_space:
-    n_estimators: [200, 1000]
-    max_depth: [4, 10]
-    learning_rate: [0.01, 0.1]
-    subsample: [0.6, 1.0]
-    colsample_bytree: [0.6, 1.0]
-    reg_alpha: [1.0e-8, 10.0]
-    reg_lambda: [1.0e-8, 10.0]
-
-# --- SLM (Optional, Phase 5) ---
 slm:
-  enabled: false
   model_name: "microsoft/Phi-3-mini-4k-instruct"
   lora_r: 16
   lora_alpha: 32
   lora_dropout: 0.05
-  epochs: 3
-  batch_size: 4
+  epochs: 2
+  batch_size: 8
+  gradient_accumulation_steps: 4
   learning_rate: 2.0e-4
-  max_seq_length: 512
-
-# --- Evaluation ---
-evaluation:
-  metrics: ["rmse", "mae", "ndcg@10", "hit_rate@10"]
-  cross_val_folds: 5
+  max_seq_length: 256
+  max_train_samples: 5000    # Extremely fast training for deadline
+  max_eval_users: 200        # Evaluate on small subset 
+  epochs: 1                  # One epoch is enough for LoRA convergence
+  attn_implementation: "eager"

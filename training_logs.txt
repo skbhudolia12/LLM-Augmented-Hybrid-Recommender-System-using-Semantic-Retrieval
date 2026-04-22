@@ -1,0 +1,100 @@
+(cf_proj) [shashank22469@compute-0-3 CF_Project]$ python -m scripts.run_pipeline --model mlp --stage 4
+
+2026-04-22 04:06:03 [INFO] __main__: Loading pre-computed data artifacts...
+2026-04-22 04:06:03 [INFO] src.data.download: Loading ratings from data/raw/ml-1m/ml-1m/ratings.dat
+2026-04-22 04:06:10 [INFO] src.data.download: Loaded 1000209 ratings
+2026-04-22 04:06:10 [INFO] src.data.download: Loading users from data/raw/ml-1m/ml-1m/users.dat
+2026-04-22 04:06:10 [INFO] src.data.download: Loaded 6040 users
+2026-04-22 04:06:10 [INFO] src.data.download: Loading movies from data/raw/ml-1m/ml-1m/movies.dat
+2026-04-22 04:06:10 [INFO] src.data.download: Loaded 3883 movies
+2026-04-22 04:06:10 [INFO] __main__: Loading pre-computed item embeddings...
+2026-04-22 04:06:10 [INFO] src.item_encoder.vector_store: VectorStore initialized at 'data/vector_db', collection='items' (3883 items)
+2026-04-22 04:06:10 [INFO] __main__: ============================================================
+2026-04-22 04:06:10 [INFO] __main__: STAGE 4: MLP Model Recommendation (Implicit BPR/BCE)
+2026-04-22 04:06:10 [INFO] __main__: ============================================================
+2026-04-22 04:06:14 [INFO] src.predictor.mlp_predictor: Training High-Capacity Hybrid NeuMF with BCE loss...
+2026-04-22 04:07:06 [INFO] src.predictor.mlp_predictor: [Epoch 1] BCE Loss: 0.2464
+2026-04-22 04:08:01 [INFO] src.predictor.mlp_predictor: [Epoch 1] HR@10: 0.5258 | NDCG@10: 0.2916
+2026-04-22 04:08:52 [INFO] src.predictor.mlp_predictor: [Epoch 2] BCE Loss: 0.2295
+2026-04-22 04:09:47 [INFO] src.predictor.mlp_predictor: [Epoch 2] HR@10: 0.5459 | NDCG@10: 0.3015
+2026-04-22 04:10:38 [INFO] src.predictor.mlp_predictor: [Epoch 3] BCE Loss: 0.2237
+2026-04-22 04:11:33 [INFO] src.predictor.mlp_predictor: [Epoch 3] HR@10: 0.5613 | NDCG@10: 0.3122
+2026-04-22 04:12:24 [INFO] src.predictor.mlp_predictor: [Epoch 4] BCE Loss: 0.2175
+2026-04-22 04:13:18 [INFO] src.predictor.mlp_predictor: [Epoch 4] HR@10: 0.5828 | NDCG@10: 0.3228
+2026-04-22 04:14:10 [INFO] src.predictor.mlp_predictor: [Epoch 5] BCE Loss: 0.2121
+2026-04-22 04:15:05 [INFO] src.predictor.mlp_predictor: [Epoch 5] HR@10: 0.5854 | NDCG@10: 0.3288
+2026-04-22 04:15:55 [INFO] src.predictor.mlp_predictor: [Epoch 6] BCE Loss: 0.2089
+2026-04-22 04:16:52 [INFO] src.predictor.mlp_predictor: [Epoch 6] HR@10: 0.5911 | NDCG@10: 0.3364
+2026-04-22 04:17:44 [INFO] src.predictor.mlp_predictor: [Epoch 7] BCE Loss: 0.2055
+2026-04-22 04:18:39 [INFO] src.predictor.mlp_predictor: [Epoch 7] HR@10: 0.6134 | NDCG@10: 0.3481
+2026-04-22 04:19:32 [INFO] src.predictor.mlp_predictor: [Epoch 8] BCE Loss: 0.2019
+2026-04-22 04:20:27 [INFO] src.predictor.mlp_predictor: [Epoch 8] HR@10: 0.6194 | NDCG@10: 0.3517
+2026-04-22 04:21:23 [INFO] src.predictor.mlp_predictor: [Epoch 9] BCE Loss: 0.1986
+2026-04-22 04:22:18 [INFO] src.predictor.mlp_predictor: [Epoch 9] HR@10: 0.6219 | NDCG@10: 0.3520
+2026-04-22 04:23:13 [INFO] src.predictor.mlp_predictor: [Epoch 10] BCE Loss: 0.1959
+2026-04-22 04:24:08 [INFO] src.predictor.mlp_predictor: [Epoch 10] HR@10: 0.6422 | NDCG@10: 0.3649
+2026-04-22 04:24:59 [INFO] src.predictor.mlp_predictor: [Epoch 11] BCE Loss: 0.1935
+2026-04-22 04:25:54 [INFO] src.predictor.mlp_predictor: [Epoch 11] HR@10: 0.6583 | NDCG@10: 0.3761
+2026-04-22 04:26:44 [INFO] src.predictor.mlp_predictor: [Epoch 12] BCE Loss: 0.1912
+2026-04-22 04:27:39 [INFO] src.predictor.mlp_predictor: [Epoch 12] HR@10: 0.6488 | NDCG@10: 0.3751
+2026-04-22 04:28:30 [INFO] src.predictor.mlp_predictor: [Epoch 13] BCE Loss: 0.1892
+2026-04-22 04:29:25 [INFO] src.predictor.mlp_predictor: [Epoch 13] HR@10: 0.6621 | NDCG@10: 0.3811
+2026-04-22 04:30:18 [INFO] src.predictor.mlp_predictor: [Epoch 14] BCE Loss: 0.1875
+2026-04-22 04:31:13 [INFO] src.predictor.mlp_predictor: [Epoch 14] HR@10: 0.6594 | NDCG@10: 0.3790
+2026-04-22 04:32:06 [INFO] src.predictor.mlp_predictor: [Epoch 15] BCE Loss: 0.1859
+2026-04-22 04:33:00 [INFO] src.predictor.mlp_predictor: [Epoch 15] HR@10: 0.6644 | NDCG@10: 0.3877
+2026-04-22 04:33:51 [INFO] src.predictor.mlp_predictor: [Epoch 16] BCE Loss: 0.1845
+2026-04-22 04:34:46 [INFO] src.predictor.mlp_predictor: [Epoch 16] HR@10: 0.6737 | NDCG@10: 0.3924
+2026-04-22 04:35:36 [INFO] src.predictor.mlp_predictor: [Epoch 17] BCE Loss: 0.1832
+2026-04-22 04:36:30 [INFO] src.predictor.mlp_predictor: [Epoch 17] HR@10: 0.6699 | NDCG@10: 0.3903
+2026-04-22 04:37:22 [INFO] src.predictor.mlp_predictor: [Epoch 18] BCE Loss: 0.1819
+2026-04-22 04:38:17 [INFO] src.predictor.mlp_predictor: [Epoch 18] HR@10: 0.6722 | NDCG@10: 0.3978
+2026-04-22 04:39:08 [INFO] src.predictor.mlp_predictor: [Epoch 19] BCE Loss: 0.1808
+2026-04-22 04:40:03 [INFO] src.predictor.mlp_predictor: [Epoch 19] HR@10: 0.6767 | NDCG@10: 0.3959
+2026-04-22 04:40:54 [INFO] src.predictor.mlp_predictor: [Epoch 20] BCE Loss: 0.1797
+2026-04-22 04:41:48 [INFO] src.predictor.mlp_predictor: [Epoch 20] HR@10: 0.6785 | NDCG@10: 0.3990
+2026-04-22 04:42:42 [INFO] src.predictor.mlp_predictor: [Epoch 21] BCE Loss: 0.1785
+2026-04-22 04:43:36 [INFO] src.predictor.mlp_predictor: [Epoch 21] HR@10: 0.6823 | NDCG@10: 0.4016
+2026-04-22 04:44:28 [INFO] src.predictor.mlp_predictor: [Epoch 22] BCE Loss: 0.1775
+2026-04-22 04:45:23 [INFO] src.predictor.mlp_predictor: [Epoch 22] HR@10: 0.6801 | NDCG@10: 0.3986
+2026-04-22 04:46:14 [INFO] src.predictor.mlp_predictor: [Epoch 23] BCE Loss: 0.1762
+2026-04-22 04:47:09 [INFO] src.predictor.mlp_predictor: [Epoch 23] HR@10: 0.6820 | NDCG@10: 0.4012
+2026-04-22 04:48:01 [INFO] src.predictor.mlp_predictor: [Epoch 24] BCE Loss: 0.1754
+2026-04-22 04:48:56 [INFO] src.predictor.mlp_predictor: [Epoch 24] HR@10: 0.6960 | NDCG@10: 0.4110
+2026-04-22 04:49:47 [INFO] src.predictor.mlp_predictor: [Epoch 25] BCE Loss: 0.1745
+2026-04-22 04:50:42 [INFO] src.predictor.mlp_predictor: [Epoch 25] HR@10: 0.6906 | NDCG@10: 0.4078
+2026-04-22 04:51:34 [INFO] src.predictor.mlp_predictor: [Epoch 26] BCE Loss: 0.1737
+2026-04-22 04:52:29 [INFO] src.predictor.mlp_predictor: [Epoch 26] HR@10: 0.6934 | NDCG@10: 0.4125
+2026-04-22 04:53:21 [INFO] src.predictor.mlp_predictor: [Epoch 27] BCE Loss: 0.1728
+2026-04-22 04:54:16 [INFO] src.predictor.mlp_predictor: [Epoch 27] HR@10: 0.6914 | NDCG@10: 0.4120
+2026-04-22 04:55:09 [INFO] src.predictor.mlp_predictor: [Epoch 28] BCE Loss: 0.1719
+2026-04-22 04:56:04 [INFO] src.predictor.mlp_predictor: [Epoch 28] HR@10: 0.6960 | NDCG@10: 0.4157
+2026-04-22 04:56:54 [INFO] src.predictor.mlp_predictor: [Epoch 29] BCE Loss: 0.1714
+2026-04-22 04:57:49 [INFO] src.predictor.mlp_predictor: [Epoch 29] HR@10: 0.6993 | NDCG@10: 0.4135
+2026-04-22 04:58:43 [INFO] src.predictor.mlp_predictor: [Epoch 30] BCE Loss: 0.1706
+2026-04-22 04:59:38 [INFO] src.predictor.mlp_predictor: [Epoch 30] HR@10: 0.6957 | NDCG@10: 0.4146
+2026-04-22 05:00:32 [INFO] src.predictor.mlp_predictor: [Epoch 31] BCE Loss: 0.1700
+2026-04-22 05:01:26 [INFO] src.predictor.mlp_predictor: [Epoch 31] HR@10: 0.6995 | NDCG@10: 0.4141
+2026-04-22 05:02:17 [INFO] src.predictor.mlp_predictor: [Epoch 32] BCE Loss: 0.1694
+2026-04-22 05:03:12 [INFO] src.predictor.mlp_predictor: [Epoch 32] HR@10: 0.6954 | NDCG@10: 0.4136
+2026-04-22 05:04:04 [INFO] src.predictor.mlp_predictor: [Epoch 33] BCE Loss: 0.1687
+2026-04-22 05:05:00 [INFO] src.predictor.mlp_predictor: [Epoch 33] HR@10: 0.7020 | NDCG@10: 0.4198
+2026-04-22 05:05:50 [INFO] src.predictor.mlp_predictor: [Epoch 34] BCE Loss: 0.1683
+2026-04-22 05:06:46 [INFO] src.predictor.mlp_predictor: [Epoch 34] HR@10: 0.7023 | NDCG@10: 0.4189
+2026-04-22 05:07:36 [INFO] src.predictor.mlp_predictor: [Epoch 35] BCE Loss: 0.1676
+2026-04-22 05:08:30 [INFO] src.predictor.mlp_predictor: [Epoch 35] HR@10: 0.6950 | NDCG@10: 0.4144
+2026-04-22 05:09:22 [INFO] src.predictor.mlp_predictor: [Epoch 36] BCE Loss: 0.1673
+2026-04-22 05:10:17 [INFO] src.predictor.mlp_predictor: [Epoch 36] HR@10: 0.7002 | NDCG@10: 0.4152
+2026-04-22 05:11:09 [INFO] src.predictor.mlp_predictor: [Epoch 37] BCE Loss: 0.1669
+2026-04-22 05:12:04 [INFO] src.predictor.mlp_predictor: [Epoch 37] HR@10: 0.6995 | NDCG@10: 0.4173
+2026-04-22 05:12:54 [INFO] src.predictor.mlp_predictor: [Epoch 38] BCE Loss: 0.1663
+2026-04-22 05:13:49 [INFO] src.predictor.mlp_predictor: [Epoch 38] HR@10: 0.7073 | NDCG@10: 0.4206
+2026-04-22 05:14:39 [INFO] src.predictor.mlp_predictor: [Epoch 39] BCE Loss: 0.1659
+2026-04-22 05:15:34 [INFO] src.predictor.mlp_predictor: [Epoch 39] HR@10: 0.7026 | NDCG@10: 0.4216
+2026-04-22 05:16:24 [INFO] src.predictor.mlp_predictor: [Epoch 40] BCE Loss: 0.1655
+2026-04-22 05:17:20 [INFO] src.predictor.mlp_predictor: [Epoch 40] HR@10: 0.7053 | NDCG@10: 0.4213
+2026-04-22 05:17:20 [INFO] __main__: ============================================================
+2026-04-22 05:17:20 [INFO] __main__: FINAL RESULTS (MLP)
+2026-04-22 05:17:20 [INFO] __main__: ============================================================
+2026-04-22 05:17:20 [INFO] __main__: HR@10:   0.7073
+2026-04-22 05:17:20 [INFO] __main__: ============================================================
