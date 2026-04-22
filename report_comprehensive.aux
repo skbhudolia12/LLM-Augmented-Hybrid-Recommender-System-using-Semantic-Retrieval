@@ -1,0 +1,78 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}System Overview}{3}{subsection.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Full four-stage pipeline architecture for the I2P-BERT Hybrid Recommender. Arrows denote data flow; coloured boxes denote distinct components. The GMF and MLP branches of NeuMF are fused before passing through the SLM Reranker.}}{4}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline_architecture}{{1}{4}{Full four-stage pipeline architecture for the I2P-BERT Hybrid Recommender. Arrows denote data flow; coloured boxes denote distinct components. The GMF and MLP branches of NeuMF are fused before passing through the SLM Reranker}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Dataset: MovieLens-1M}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dataset Statistics}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces MovieLens-1M Dataset Statistics}}{5}{table.caption.2}\protected@file@percent }
+\newlabel{tab:dataset_stats}{{1}{5}{MovieLens-1M Dataset Statistics}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Chronological Train / Validation / Test Split}{5}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Evaluation Metrics}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Hit Ratio @ K (HR\spacefactor \@m {}K)}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Normalized Discounted Cumulative Gain @ K (NDCG@K)}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Test Protocol Summary}{6}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Evaluation Protocol Configuration}}{6}{table.caption.3}\protected@file@percent }
+\newlabel{tab:eval_protocol}{{2}{6}{Evaluation Protocol Configuration}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Pipeline Architecture}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Stage 1: Data Preparation and Augmentation}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Implicit Feedback Transformation}{6}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Negative Sampling Strategy}{6}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Content Augmentation via TMDB API}{6}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stage 2: Item Encoding via Sentence-BERT}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Architecture}{6}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Vector Storage}{7}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Stage 3: User Encoding via I2P-BERT}{7}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Interaction Text Builder}{7}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}I2P-BERT Multi-Task Architecture}{7}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces I2P-BERT Architecture. Raw tabular user data is first linearised into a natural language paragraph by the Interaction Text Builder, fed through the BERT encoder, and the \texttt  {[CLS]} token is passed to four task-specific heads for multi-task joint learning.}}{8}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:i2pbert}{{2}{8}{I2P-BERT Architecture. Raw tabular user data is first linearised into a natural language paragraph by the Interaction Text Builder, fed through the BERT encoder, and the \texttt {[CLS]} token is passed to four task-specific heads for multi-task joint learning}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Multi-Task Loss Function}{8}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Training Configuration}{8}{subsubsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Stage 4: Feature Fusion via Hybrid NeuMF}{9}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Architecture Overview}{9}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GMF Branch — Linear Collaborative Signal.}{9}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MLP Branch — Deep Semantic Signal.}{9}{equation.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fusion and Output.}{9}{equation.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Point-Wise BCE Objective}{9}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Implementation Details}{10}{subsubsection.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Stage 2: SLM-Based Re-Ranking via Phi-3-mini}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Motivation}{10}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Causal Probability Extraction}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}LoRA Fine-Tuning}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Sub-Sampled Adaptation Protocol}{11}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Stage 3: Late Fusion Ensemble}{11}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Cascade Re-Ranking Framework}{11}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Asymmetric Late Fusion}{11}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Non-Degradation Safety Constraint}{11}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Training Procedure and Results}{11}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Training Convergence}{11}{subsection.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hybrid NeuMF training convergence over 40 epochs on MovieLens-1M. The BCE loss (left axis, blue) decreases monotonically from 0.2464 to 0.1655. HR@10 (right axis, orange) rises steadily, crossing the 0.70 target threshold at Epoch 33 and peaking at \textbf  {0.7073} at Epoch 38. The dashed green line marks the HR@10 = 0.70 target.}}{12}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:convergence}{{3}{12}{Hybrid NeuMF training convergence over 40 epochs on MovieLens-1M. The BCE loss (left axis, blue) decreases monotonically from 0.2464 to 0.1655. HR@10 (right axis, orange) rises steadily, crossing the 0.70 target threshold at Epoch 33 and peaking at \textbf {0.7073} at Epoch 38. The dashed green line marks the HR@10 = 0.70 target}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Per-Epoch Metrics Table}{13}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-Epoch Training Log --- Hybrid NeuMF (BCE Loss, HR@10, NDCG@10)}}{13}{table.caption.6}\protected@file@percent }
+\newlabel{tab:per_epoch}{{3}{13}{Per-Epoch Training Log --- Hybrid NeuMF (BCE Loss, HR@10, NDCG@10)}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Comparative Results}{14}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Hit Rate (HR@10) Comparison}{14}{subsection.8.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hit Rate @ 10 (HR@10) — MovieLens-1M, Leave-One-Out 1:99 Protocol}}{14}{table.caption.7}\protected@file@percent }
+\newlabel{tab:hr10}{{4}{14}{Hit Rate @ 10 (HR@10) — MovieLens-1M, Leave-One-Out 1:99 Protocol}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}NDCG@10 Comparison}{14}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Normalized Discounted Cumulative Gain @ 10 (NDCG@10) — MovieLens-1M, LOO 1:99}}{14}{table.caption.8}\protected@file@percent }
+\newlabel{tab:ndcg10}{{5}{14}{Normalized Discounted Cumulative Gain @ 10 (NDCG@10) — MovieLens-1M, LOO 1:99}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Comprehensive Model Comparison Chart}{15}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Grouped bar chart comparing HR@10 and NDCG@10 across all evaluated models on MovieLens-1M (LOO 1:99 protocol). The dashed line at HR@10 = 0.70 marks the SOTA competitive threshold. Our Hybrid NeuMF and projected SLM Ensemble are the only models to surpass this boundary.}}{15}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:comparison}{{4}{15}{Grouped bar chart comparing HR@10 and NDCG@10 across all evaluated models on MovieLens-1M (LOO 1:99 protocol). The dashed line at HR@10 = 0.70 marks the SOTA competitive threshold. Our Hybrid NeuMF and projected SLM Ensemble are the only models to surpass this boundary}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Key Observations}{15}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Hyperparameter Summary}{16}{section.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Complete Hyperparameter Configuration (\texttt  {config/config.yaml})}}{16}{table.caption.10}\protected@file@percent }
+\newlabel{tab:hyperparams}{{6}{16}{Complete Hyperparameter Configuration (\texttt {config/config.yaml})}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Advantages Over Existing Approaches}{17}{section.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Qualitative Comparison of Recommendation Paradigms}}{17}{table.caption.11}\protected@file@percent }
+\newlabel{tab:paradigms}{{7}{17}{Qualitative Comparison of Recommendation Paradigms}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{17}{section.11}\protected@file@percent }
+\gdef \@abspage@last{19}
